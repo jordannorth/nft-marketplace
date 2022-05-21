@@ -17,13 +17,13 @@ import MarketPlace from '../artifacts/contracts/NFTMarket.sol/NFTMarket.json'
 
 export default function Home() {
   // Not sure on the syntax here or how it works, will need to find this out
-  const[nfts, setNfts] = useState([])
+  const [nfts, setNfts] = useState([])
   const [loadingState, setLoadingState] = useState('not-loaded')
 
   // Used in react to show that the component must do something after render 
   useEffect(() => {
     loadNFTs()
-  },[])
+  }, [])
 
   async function loadNFTs() {
     // Using ethers library to get RPC providers 
@@ -75,22 +75,41 @@ export default function Home() {
     })
     // Wait for transaction to finish 
     await transaction.wait()
+
+    // Reload to remove NFT that has been sold 
     loadNFTs()
   }
 
   // Now checking thr loaded state and the nft array length 
-  if(loadingState === 'loaded' && !nfts.length) return (
+  if (loadingState === 'loaded' && !nfts.length) return (
     <h1 className='px-20 py-10 text-3xl'>No items in the marketplace</h1>
   )
 
   return (
     <div className="flex justify-center">
-     <div className='px-4' style={{maxWidth: '1600px'}}>
-       {/* Responsive design elements with tailwind */}
-       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 pt-4'>
+      <div className='px-4' style={{ maxWidth: '1600px' }}>
+        {/* Responsive design elements with tailwind */}
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 pt-4'>
 
-       </div>
-       </div>
+          {
+            nfts.map((nft, i) => (
+              <div key={i} className="border shadow rounded-xl overflow-hidden">
+                <img src={nft.image} />
+                <div className='p-4'>
+                  <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
+                  <div style={{ height: '70px', overflow: 'hidden' }}>
+                    <p className='text-gray-400'>{nft.description}</p>
+                  </div>
+                </div>
+                <div className='p-4 bg-black'>
+                  <p className='text-2xl mb-4 font-bold text-white'>{nft.price} Matic</p>
+                  <button className='w-full bg-pink-500 text-white font-bold py-2 px-12 rounded' onClick={() => buyNft(nft)}>Buy</button>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
     </div>
   )
 }
