@@ -6,7 +6,7 @@ import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 import Web3Modal from 'web3modal'
 
-const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0') 
 
 import {
     nftAddress, nftMarketAddress
@@ -57,6 +57,7 @@ export default function CreateItem() {
                     progress: (prog) => console.log('received: ${prog}')
                 }
             )
+            console.log(added)
             // Url of where the image has been stored 
             const url = 'https://ipfs.infura.io/ipfs/${added.path}'
             createSale(url)
@@ -65,9 +66,9 @@ export default function CreateItem() {
         }
     }
 
-    async function createSale() {
+    async function createSale(url) {
         // Process of connecting wallet
-        const web3modal = new web3modal()
+        const web3modal = new Web3Modal()
         const connection = await web3modal.connect()
         const provider = new ethers.providers.Web3Provider(connection)
         const signer = provider.getSigner()
@@ -78,6 +79,7 @@ export default function CreateItem() {
         let tx = await transaction.wait()
 
         let event = tx.events[0]
+        console.log(event);
         let value = event.args[2]
         let tokenId = value.toNumber()
 
