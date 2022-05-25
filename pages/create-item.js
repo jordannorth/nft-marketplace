@@ -57,9 +57,8 @@ export default function CreateItem() {
                     progress: (prog) => console.log('received: ${prog}')
                 }
             )
-            console.log(added)
             // Url of where the image has been stored 
-            const url = 'https://ipfs.infura.io/ipfs/${added.path}'
+            const url = 'https://ipfs.infura.io/ipfs/' + added.path
             createSale(url)
         } catch (error) {
             console.log('Error uploading file: ', error)
@@ -83,7 +82,7 @@ export default function CreateItem() {
         let value = event.args[2]
         let tokenId = value.toNumber()
 
-        const price = ethers.utils.pareseUnits(formInput.price, 'ether')
+        const price = ethers.utils.parseUnits(formInput.price, 'ether')
         contract = new ethers.Contract(nftMarketAddress, MarketPlace.abi, signer)
         let listingPrice = await contract.getListingPrice()
         listingPrice = listingPrice.toString()

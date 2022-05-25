@@ -36,7 +36,9 @@ export default function Home() {
     const data = await marketContract.fetchMarketItems()
 
     const items = await Promise.all(data.map(async i => {
-      const tokenUri = await tokenContract.tokenContract.tokenURI(i.tokenId)
+      console.log(tokenContract)
+      const tokenUri = await tokenContract.tokenURI(i.tokenId)
+      console.log(tokenUri)
       const meta = await axios.get(tokenUri)
       // Making use of the ether library again 
       let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
