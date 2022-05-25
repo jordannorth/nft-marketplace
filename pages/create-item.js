@@ -32,7 +32,7 @@ export default function CreateItem() {
                 }
             )
             // Url of where the image has been stored 
-            const url = 'https://ipfs.infura.io/ipfs/${added.path}'
+            const url = 'https://ipfs.infura.io/ipfs/' + added.path
             setFileUrl(url)
         } catch (e) {
             console.log(e)
