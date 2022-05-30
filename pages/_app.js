@@ -11,9 +11,10 @@ function MyApp({ Component, pageProps }) {
         <meta name="Description" content="NFT marketplace by JN" />
         {/* <link rel="icon" src="/..public/assets/duck-logo.png" />  */}
       </Head>
+   
       <Navbar />
       <Component {...pageProps} />
-    </div>
+      <div/>
   );
 }
 
