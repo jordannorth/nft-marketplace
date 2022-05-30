@@ -9,7 +9,6 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>NFT Marketplace</title>
         <meta name="Description" content="NFT marketplace by JN" />
-        {/* <link rel="icon" src="/..public/assets/duck-logo.png" />  */}
       </Head>
    
       <Navbar />
