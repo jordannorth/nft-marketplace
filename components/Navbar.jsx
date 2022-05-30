@@ -16,7 +16,7 @@ const Navbar = () => {
         />
         <div>
           {/* Hidden, anything above medium we display as flex */}
-          <ul className="hidden md:flex">
+          <ul className="flex md:hidden">
             <Link href="/create-item">
               <li className="ml-10 text-sm uppercase hover:border-b">Home</li>
             </Link>

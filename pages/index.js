@@ -89,41 +89,30 @@ export default function Home() {
   )
 
   return (
-    <div>
-    <Head>
-      <title>NFT Marketplace</title>
-      <meta name="viewport" content="initial-scale=1, width=device-width" />
-    </Head>
-  {/* <Main />
-  <About />
-  <Skills />
-  <Projects />
-  <Contact /> */}
-  </div>
-    // <div className="flex justify-center">
-    //   <div className='px-4' style={{ maxWidth: '1600px' }}>
-    //     {/* Responsive design elements with tailwind */}
-    //     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 pt-4'>
+    <div className="flex justify-center">
+      <div className='px-4' style={{ maxWidth: '1600px' }}>
+        {/* Responsive design elements with tailwind */}
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 pt-4'>
 
-    //       {
-    //         nfts.map((nft, i) => (
-    //           <div key={i} className="border shadow rounded-xl overflow-hidden">
-    //             <img src={nft.image} />
-    //             <div className='p-4'>
-    //               <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
-    //               <div style={{ height: '70px', overflow: 'hidden' }}>
-    //                 <p className='text-gray-400'>{nft.description}</p>
-    //               </div>
-    //             </div>
-    //             <div className='p-4 bg-black'>
-    //               <p className='text-2xl mb-4 font-bold text-white'>{nft.price} Matic</p>
-    //               <button className='w-full bg-pink-500 text-white font-bold py-2 px-12 rounded' onClick={() => buyNft(nft)}>Buy</button>
-    //             </div>
-    //           </div>
-    //         ))
-    //       }
-    //     </div>
-    //   </div>
-    // </div>
+          {
+            nfts.map((nft, i) => (
+              <div key={i} className="border shadow rounded-xl overflow-hidden">
+                <img src={nft.image} />
+                <div className='p-4'>
+                  <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
+                  <div style={{ height: '70px', overflow: 'hidden' }}>
+                    <p className='text-gray-400'>{nft.description}</p>
+                  </div>
+                </div>
+                <div className='p-4 bg-black'>
+                  <p className='text-2xl mb-4 font-bold text-white'>{nft.price} Matic</p>
+                  <button className='w-full bg-pink-500 text-white font-bold py-2 px-12 rounded' onClick={() => buyNft(nft)}>Buy</button>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
   )
 }
