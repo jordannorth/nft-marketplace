@@ -1,4 +1,3 @@
-const { expect } = require('chai');
 const { ethers } = require('hardhat');
 
 describe('NFTMarket', function () {
@@ -24,25 +23,12 @@ describe('NFTMarket', function () {
 
     // Create the NFT
     let tokenId = await nft.createToken('https://www.mytokenlocation.com'); // Should have token id 1
-    var tok1 = await nft.getTokenId();
-    console.log(tok1.toString());
     var tokenId2 = await nft.createToken('https://www.mytokenlocation2.com'); // Should have token id 2
-    var tok2 = await nft.getTokenId();
-    console.log(tok2.toString());
 
     // List the first NFT on the market
     await market.createMarketItem(nftContractAddress, 1, auctionPrice, {
       value: listingPrice,
     });
-
-    var numberOfItems = await market.getNumberOfItemsInMarketplace();
-    console.log('Items in the marketplace: ' + numberOfItems.toString());
-
-    var mark = await market.returnSpecifiedItem(1);
-    console.log('The first marketItem' + mark);
-
-    var mark = await market.returnSpecifiedItem(0);
-    console.log('The test marketItem' + mark);
 
     // List the second NFT on the market
     await market.createMarketItem(nftContractAddress, 2, auctionPrice, {
@@ -51,13 +37,6 @@ describe('NFTMarket', function () {
 
     numberOfItems = await market.getNumberOfItemsInMarketplace();
     console.log('Items in the marketplace: ' + numberOfItems.toString());
-
-    var mark = await market.returnSpecifiedItem(2);
-    console.log('The test marketItem' + mark);
-
-    let test = await market.fetchMarketItems();
-
-    console.log(test);
 
     // Working with the ether library to get test accounts to use, not sure about how this has been declared although it is javascript (Maybe using the _ to say that the array is private)
     const [firstAddress, buyerAddress, thirdAddress] =
@@ -75,15 +54,15 @@ describe('NFTMarket', function () {
     // Mapping the token uri for some reason
     items = await Promise.all(
       items.map(async (i) => {
-        // This line doesn't work, not sure why
-        // const tokenUri = await nft.tokenURI(0)
+        // Token uri built into ERC721
+        const tokenUri = await nft.tokenURI(i.tokenId);
         let item = {
           price: i.price.toString(),
           tokenId: i.tokenId.toString(),
           seller: i.seller,
           owner: i.owner,
           test: i,
-          // tokenUri
+          tokenUri,
         };
 
         return item;
