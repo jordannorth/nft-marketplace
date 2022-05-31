@@ -53,6 +53,31 @@ contract NFTMarket is ReentrancyGuard {
         return listingPrice;
     }
 
+    function getNumberOfItemsInMarketplace() public view returns (uint256) {
+        return _itemIds.current();
+    }
+
+    function returnSpecifiedItem(uint256 tokenId)
+        public
+        view
+        returns (MarketItem[] memory)
+    {
+        uint256 totalItemCount = _itemIds.current();
+        uint256 itemCount = 0;
+        uint256 currentIndex = 0;
+
+        // Loop through to get the number of items that were created in order to create the array, you may have bought the item then sold it so you didn't actually craete it
+
+        MarketItem[] memory items = new MarketItem[](1);
+
+        uint256 currentId = idToMarketItem[tokenId].itemId;
+        MarketItem storage currentItem = idToMarketItem[currentId];
+        items[0] = currentItem;
+        currentIndex++;
+
+        return items;
+    }
+
     // This code       public
     //    payable
     //   nonReentrant
@@ -137,7 +162,7 @@ contract NFTMarket is ReentrancyGuard {
         // Memory used as we don't need the data to persist, not sure why the variables haven't been declared with memory?
         MarketItem[] memory items = new MarketItem[](unsoldItemCount);
         // Looping through the items to find the ones that aren't sold
-        for (uint256 i = 1; i < itemCount; i++) {
+        for (uint256 i = 1; i <= itemCount; i++) {
             if (idToMarketItem[i].owner == address(0)) {
                 uint256 currentId = idToMarketItem[i].itemId;
                 // Not sure why this is being stored in storage, maybe a limitation with adding it to the array if it's in memory
@@ -156,14 +181,14 @@ contract NFTMarket is ReentrancyGuard {
         uint256 currentIndex = 0;
 
         // Looping through the items to find the number that isn't sold so we can create the array as we can't dynamically do this
-        for (uint256 i = 1; i < totalItemCount; i++) {
+        for (uint256 i = 1; i <= totalItemCount; i++) {
             if (idToMarketItem[i].owner == msg.sender) {
                 itemCount++;
             }
         }
 
         MarketItem[] memory items = new MarketItem[](itemCount);
-        for (uint256 i = 1; i < totalItemCount; i++) {
+        for (uint256 i = 1; i <= totalItemCount; i++) {
             if (idToMarketItem[i].owner == msg.sender) {
                 uint256 currentId = idToMarketItem[i].itemId;
                 MarketItem storage currentItem = idToMarketItem[currentId];
@@ -180,14 +205,14 @@ contract NFTMarket is ReentrancyGuard {
         uint256 currentIndex = 0;
 
         // Loop through to get the number of items that were created in order to create the array, you may have bought the item then sold it so you didn't actually craete it
-        for (uint256 i = 1; i < totalItemCount; i++) {
+        for (uint256 i = 1; i <= totalItemCount; i++) {
             if (idToMarketItem[i].seller == msg.sender) {
                 itemCount++;
             }
         }
 
         MarketItem[] memory items = new MarketItem[](itemCount);
-        for (uint256 i = 1; i < totalItemCount; i++) {
+        for (uint256 i = 1; i <= totalItemCount; i++) {
             if (idToMarketItem[i].seller == msg.sender) {
                 uint256 currentId = idToMarketItem[i].itemId;
                 MarketItem storage currentItem = idToMarketItem[currentId];

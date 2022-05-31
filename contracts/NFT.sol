@@ -21,6 +21,7 @@ contract NFT is ERC721URIStorage {
     }
 
     function createToken(string memory tokenURI) public returns (uint256) {
+        // Starting from 0 first token id will be 1
         _tokenIds.increment();
         //In solidity this is an unisgned(only positive values) int and is 256 bits in size
         uint256 newItemId = _tokenIds.current();
@@ -30,5 +31,10 @@ contract NFT is ERC721URIStorage {
         setApprovalForAll(contractAddress, true);
 
         return newItemId;
+    }
+
+        // Function used for getting the listing price from the front end of the app, similar setup to oop but you give return type then the variable inside
+    function getTokenId() public view returns (uint256) {
+        return _tokenIds.current();
     }
 }
