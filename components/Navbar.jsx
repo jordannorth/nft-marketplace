@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='fixed w-full h-30 shadow-xl z-[100] p-2'>
+    <div className='fixed w-full h-30 shadow-xl z-[100]'>
       <div className='flex justify-between items-center w-full h-full px-2 2xl:px-16'>
         <Image
           src='/../public/assets/duck-duck.png'
@@ -25,10 +25,10 @@ const Navbar = () => {
         <div>
           {/* Hidden, anything above medium we display as flex */}
           <ul className='hidden md:flex'>
-            <Link href='/create-item'>
+            <Link href='/'>
               <li className='ml-10 text-sm uppercase hover:border-b'>Home</li>
             </Link>
-            <Link href='/'>
+            <Link href='/create-item'>
               <li className='ml-10 text-sm uppercase hover:border-b'>Sell</li>
             </Link>
             <Link href='/'>
@@ -49,7 +49,9 @@ const Navbar = () => {
       </div>
 
       <div
-        className={nav ? 'fixed left-0 top-0 w-full h-screen bg-black/70' : ''}
+        className={
+          nav ? 'md:hidden fixed left-0 top-0 w-full h-screen bg-black/70' : ''
+        }
       >
         {/* Had the else set to hidden here although causes the nav to jump on as opposed to easing in as specified in the css */}
         <div
