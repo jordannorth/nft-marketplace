@@ -71,6 +71,7 @@ export default function CreateItem() {
   }
 
   async function createSale(url) {
+    console.log('We are at the create sale stage');
     // Process of connecting wallet
     const web3modal = new Web3Modal();
     const connection = await web3modal.connect();
@@ -81,6 +82,8 @@ export default function CreateItem() {
     let contract = new ethers.Contract(nftAddress, NFT.abi, signer);
     let transaction = await contract.createToken(url);
     let tx = await transaction.wait();
+
+    console.log('This bit is done');
 
     let event = tx.events[0];
     console.log(event);
@@ -102,7 +105,7 @@ export default function CreateItem() {
   }
 
   return (
-    <div className='flex justify-center'>
+    <div className='flex justify-center z-[90]'>
       {/* Creating a form to allow users to specify the asset */}
       <div className='w-1/2 flex flex-col pb-12'>
         <input
