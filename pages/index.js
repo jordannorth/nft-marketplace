@@ -94,15 +94,14 @@ export default function MyNFTs() {
   // Now checking thr loaded state and the nft array length
   if (loadingState === 'loaded' && !nfts.length)
     return (
-      //<h1 className="px-20 py-10 text-3xl">No items in the marketplace</h1>
-      <p></p>
+      <h1 className='px-20 py-10 text-3xl'>No items in the marketplace</h1>
     );
 
   return (
     <div className='flex justify-center'>
       <div className='px-4' style={{ maxWidth: '1600px' }}>
         {/* Responsive design elements with tailwind */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 pt-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 pt-4 gap-2'>
           {nfts.map((nft, i) => (
             <div key={i} className='border shadow rounded-xl overflow-hidden'>
               <img src={nft.image} />
@@ -117,16 +116,18 @@ export default function MyNFTs() {
                   <p className='text-gray-400'>{nft.description}</p>
                 </div>
               </div>
-              <div className='p-4 bg-black'>
-                <p className='text-2xl mb-4 font-bold text-white'>
-                  {nft.price} Matic
-                </p>
-                <button
-                  className='w-full bg-pink-500 text-white font-bold py-2 px-12 rounded'
-                  onClick={() => buyNft(nft)}
-                >
-                  Buy
-                </button>
+              <div className='p-4'>
+                <div className='border-t-2 pt-2'>
+                  <p className='text-2xl mb-4 font-bold text-white'>
+                    {nft.price} Matic
+                  </p>
+                  <button
+                    className='w-full text-white font-bold py-2 px-12 rounded'
+                    onClick={() => buyNft(nft)}
+                  >
+                    Buy
+                  </button>
+                </div>
               </div>
             </div>
           ))}

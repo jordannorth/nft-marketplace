@@ -80,10 +80,10 @@ const Navbar = () => {
             <div className='border-b border-gray-300 my-4'></div>
             <div className='py-4 flex-col'>
               <ul className='uppercase'>
-                <Link href='/create-item'>
+                <Link href='/'>
                   <li className='py-4 text-sm'>Home</li>
                 </Link>
-                <Link href='/'>
+                <Link href='/create-item'>
                   <li className='py-4 text-sm'>Sell</li>
                 </Link>
                 <Link href='/'>
