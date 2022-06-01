@@ -103,7 +103,10 @@ export default function MyNFTs() {
         {/* Responsive design elements with tailwind */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 pt-4 gap-2'>
           {nfts.map((nft, i) => (
-            <div key={i} className='border shadow rounded-xl overflow-hidden'>
+            <div
+              key={i}
+              className='border shadow rounded-xl overflow-hidden bg-white'
+            >
               <img src={nft.image} />
               <div className='p-4'>
                 <p
@@ -118,7 +121,7 @@ export default function MyNFTs() {
               </div>
               <div className='p-4'>
                 <div className='border-t-2 pt-2'>
-                  <p className='text-2xl mb-4 font-bold text-white'>
+                  <p className='text-2xl mb-4 font-bold text-gray-400'>
                     {nft.price} Matic
                   </p>
                   <button
