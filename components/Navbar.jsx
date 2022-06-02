@@ -31,7 +31,7 @@ const Navbar = () => {
             <Link href='/create-item'>
               <li className='ml-10 text-sm uppercase hover:border-b'>Sell</li>
             </Link>
-            <Link href='/'>
+            <Link href='/my-nfts'>
               <li className='ml-10 text-sm uppercase hover:border-b'>
                 My NFT's
               </li>
@@ -86,7 +86,7 @@ const Navbar = () => {
                 <Link href='/create-item'>
                   <li className='py-4 text-sm'>Sell</li>
                 </Link>
-                <Link href='/'>
+                <Link href='/my-nfts'>
                   <li className='py-4 text-sm'>My NFT's</li>
                 </Link>
                 <Link href='/'>
