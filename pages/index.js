@@ -66,12 +66,19 @@ export default function MyNFTs() {
 
   async function buyNft(nft) {
     const web3modal = new Web3Modal();
-    const connection = web3modal.connect();
-    // Again not sure on the ether references
+    const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
-
-    // Prompting user to accept the interaction
     const signer = provider.getSigner();
+
+    console.log('HERE');
+
+    // const web3modal = new Web3Modal();
+    // const connection = web3modal.connect();
+    // // Again not sure on the ether references
+    // const provider = new ethers.providers.Web3Provider(connection);
+
+    // // Prompting user to accept the interaction
+    // const signer = provider.getSigner();
     // Calling the same ether library however this time we are passing in the signer as the final argument as opposed to the provider
     const contract = new ethers.Contract(
       nftMarketAddress,
@@ -79,11 +86,17 @@ export default function MyNFTs() {
       signer
     );
 
+    console.log('HERE2');
+
     // Gets price and parses it to a much more readable format
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether');
+
     const transaction = await contract.createMarketSale(nft.tokenId, {
       value: price,
     });
+
+    console.log('HERE3');
+
     // Wait for transaction to finish
     await transaction.wait();
 
