@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 // Used to give that dropdown that we see where you can connect your wallet through metamask, walletconnect etc
 import Web3Modal from 'web3modal';
-import Head from 'next/head';
 
 // Import addresses from the config
 import { nftAddress, nftMarketAddress } from '../config';
@@ -70,15 +69,6 @@ export default function MyNFTs() {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
 
-    console.log('HERE');
-
-    // const web3modal = new Web3Modal();
-    // const connection = web3modal.connect();
-    // // Again not sure on the ether references
-    // const provider = new ethers.providers.Web3Provider(connection);
-
-    // // Prompting user to accept the interaction
-    // const signer = provider.getSigner();
     // Calling the same ether library however this time we are passing in the signer as the final argument as opposed to the provider
     const contract = new ethers.Contract(
       nftMarketAddress,
@@ -86,16 +76,15 @@ export default function MyNFTs() {
       signer
     );
 
-    console.log('HERE2');
-
     // Gets price and parses it to a much more readable format
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether');
 
-    const transaction = await contract.createMarketSale(nft.tokenId, {
-      value: price,
-    });
-
-    console.log('HERE3');
+    //TODO: Issue here with the transaction
+    const transaction = await contract.createMarketSale(
+      nftAddress,
+      nft.tokenId,
+      { value: price }
+    );
 
     // Wait for transaction to finish
     await transaction.wait();
