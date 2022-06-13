@@ -18,6 +18,7 @@ contract RoyaltyNFT is ERC721URIStorage {
         contractAddress = marketplaceAddress;
     }
 
+    // Will need to work out how to build rpyalties in here
     function createToken(string memory tokenURI) public returns (uint256) {
         // Starting from 0 first token id will be 1
         _tokenIds.increment();
