@@ -36,7 +36,7 @@ const Navbar = () => {
                 My NFT's
               </li>
             </Link>
-            <Link href='/'>
+            <Link href='/creator-dashboard'>
               <li className='ml-10 text-sm uppercase hover:border-b'>
                 Creator
               </li>
@@ -89,7 +89,7 @@ const Navbar = () => {
                 <Link href='/my-nfts'>
                   <li className='py-4 text-sm'>My NFT's</li>
                 </Link>
-                <Link href='/'>
+                <Link href='/creator-dashboard'>
                   <li className='py-4 text-sm'>Creator</li>
                 </Link>
               </ul>

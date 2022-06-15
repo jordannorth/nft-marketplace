@@ -93,10 +93,11 @@ export default function MyNFTs() {
     loadNFTs();
   }
 
-  // Now checking thr loaded state and the nft array length
   if (loadingState === 'loaded' && !nfts.length)
     return (
-      <h1 className='px-20 py-10 text-3xl'>No items in the marketplace</h1>
+      <div className='flex w-full h-full items-center justify-center allign-middle'>
+        <h1 className='text-3xl'>No items in the marketplace 💀</h1>
+      </div>
     );
 
   return (
