@@ -24,6 +24,8 @@ export default function CreatorDashboard() {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
 
+    //we are testing this
+
     const marketContract = new ethers.Contract(
       nftMarketAddress,
       MarketPlace.abi,
